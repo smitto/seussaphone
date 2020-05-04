@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Seussaphone</title>
+  <script type="text/javascript" src="https://unpkg.com/vue"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.js"></script>
+
+  <link rel="stylesheet" href="./seussaphone.css">
+</head>
+<body>
+  <section id="wrap">
+    <header>
+      <h1>Seussaphone!</h1>
+      <h2>Tap the keys to play</h2>
+    </header>
+    <div id="seussaphone">
+      <div class="keys">
+        <note-item
+          v-for="note in noteList"
+          v-bind:key="note.id"
+          v-bind:note="note"
+        ></note-item>
+      </div>
+    </div>
+  </section>
+</body>
+<script type="text/javascript" src="./seussaphone.js"></script>
+</html>
