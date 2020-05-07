@@ -3,7 +3,7 @@
   <title>Seussaphone</title>
   <script type="text/javascript" src="https://unpkg.com/vue"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="./seussaphone.css">
 </head>
 <body>
@@ -13,15 +13,27 @@
       <h2>Tap the keys to play</h2>
     </header>
     <div id="seussaphone">
+      <div>{{ recordedNotesPrintout }}</div>
       <div class="keys">
         <note-item
           v-for="note in noteList"
           v-bind:key="note.id"
+          ref="notes"
           v-bind:note="note"
+          v-bind:is-recording="isRecording"
+          @clicked="addToRecording"
         ></note-item>
       </div>
     </div>
   </section>
 </body>
+<template id="note">
+  <div v-bind:class="{ key: true, sharp: note.sharp, playing: nowPlaying }"
+    v-bind:style="{ left: note.left + '%' }"
+    v-bind:data-note="note.pitch"
+    @click="playNote"
+    @transitionend="nowPlaying = false">
+  </div>
+</template>
 <script type="text/javascript" src="./seussaphone.js"></script>
 </html>
